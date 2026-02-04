@@ -1,15 +1,35 @@
 ﻿namespace lab_2.Tests;
 
-public class Tests
+
+[TestFixture]
+public class PalindromeTests
 {
-    [SetUp]
-    public void Setup()
+    [Test]
+    public void FindLongestPalindrome_Multiple_ReturnsLongest()
     {
+        //Arrange
+        string text = "Пилип бачив радар та аніліна";
+        string expected = "аніліна";
+
+        //Act
+        string result = Palindrome.FindLongestPalindrome(text);
+        
+        //Assert
+        Assert.That(result, Is.EqualTo(expected));
     }
 
     [Test]
-    public void Test1()
+    [TestCase("Радар", true)]
+    [TestCase("А", false)]
+    [TestCase("аніліна", true)]
+    [TestCase("Програма", false)]
+    
+    public void IsPalindrome_DifferentInputs_ReturnsExpected(string word, bool expected)
     {
-        Assert.Pass();
+        //Act
+        bool result = Palindrome.IsPalindrome(word);
+        
+        //Assert
+        Assert.That(result, Is.EqualTo(expected));
     }
 }
